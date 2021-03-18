@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Report.mrt - Viewer</title>
+	<link rel="stylesheet" type="text/css" href="css/stimulsoft.viewer.office2013.whiteteal.css">
+	<script type="text/javascript" src="scripts/stimulsoft.reports.js"></script>
+	<script type="text/javascript" src="scripts/stimulsoft.reports.maps.js"></script>
+	<script type="text/javascript" src="scripts/stimulsoft.viewer.js"></script>
+<body>
+
+	<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+
+	<script type="text/babel">
+		class Viewer extends React.Component {
+			render() {
+				return <div id="viewerContent"></div>;
+			}
+
+			componentWillMount() {
+				var report = Stimulsoft.Report.StiReport.createNewReport();
+				report.loadFile("reports/Report.mrt");
+
+				var options = new Stimulsoft.Viewer.StiViewerOptions();
+				options.appearance.fullScreenMode = true;
+				options.toolbar.displayMode = Stimulsoft.Viewer.StiToolbarDisplayMode.Separated;
+				
+				this.viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
+				this.viewer.report = report;
+			}
+
+			componentDidMount() {
+				this.viewer.renderHtml("viewerContent");
+			}
+		}
+
+		ReactDOM.render(
+			<Viewer />,
+			document.getElementById("main")
+		)
+	</script>
+</body>
+</html>

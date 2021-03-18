@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+    <link rel="stylesheet" href="stimulsoft/stimulsoft.viewer.office2013.whiteblue.css">
+</head>
+
+<body>
+    <div id="main"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <script src="stimulsoft/stimulsoft.reports.js"></script>
+    <script src="stimulsoft/stimulsoft.viewer.js"></script>
+    <script type="text/babel">
+        // import URI from '../../../src/api.js';
+        class Viewer extends React.Component {
+
+            constructor(props){
+                super(props);
+                this.state = {
+                    report : window.localStorage.getItem("report"),
+                    URI : window.localStorage.getItem("api"),
+                    PASS : window.localStorage.getItem("PASS"),
+                }
+            }
+
+            render() {
+                return <div id="viewer"></div>;
+            }          
+
+            componentDidMount(){
+                console.log('Loading Viewer view');
+                const REPORT_DETAILS = JSON.parse(window.localStorage.getItem("report-details"))
+    
+                console.log('Creating the report viewer with default options');
+                var viewer = new window.Stimulsoft.Viewer.StiViewer(null, 'StiViewer', false);
+
+                // Stimulsoft Licence
+                window.Stimulsoft.Base.StiLicense.key = "6vJhGtLLLz2GNviWmUTrhSqnOItdDwjBylQzQcAOiHkkIWHKZyw5v/a/adOMgM+8E5eZG9UZG/owOriMz+Jfc/5vwh" + "14CPdixpFHHPcoEQg1KwKZNDFzXmK6/o5GtQYYX7YK1RbhQGQQpH2qjgDL+EidKAXtbtXq4bkPRX0I++bzs/jBhsUy" + "B9BAi0dPSFmDoXKpmkWA7QSxu8U0vXocfC+z9ng7g3VBR7e9hONIbETizmbdaIUNoAsmt8u6fa4JM712SdRQLuXUqF" + "zUFrp9J2jui892FcDiI78MN0iEHrxej6N/uL/j+QB6Y+HfKO4sQik1njw59fiitHc1RmE85Oqi3O9bIZ1rMS23ye00" + "vAnaBNJY/+cpB3zfPaIYqrwTk7V0UNtBivIgXRSWM5U5EPsBrYpI8XKMZJP0HDssn0ysxAom2gJ3pv9tzW6Em9eDAJ" + "WPkfWwjLfqjLaakIaIoDPbES/nnWLrgb0cFDyA7qc3P7BC8ZyLgFsClVI88HEeFDquLDhQYWWcHZmzrQb36lcQ1ROP" + "J1SECY++QqLbtEdJU2cCu2ghnpIZl0uGCyYw";
+                // Stimulsoft Licence
+
+                console.log('Creating a new report instance');
+                var report = new window.Stimulsoft.Report.StiReport();
+
+                console.log('Load report from url');
+                // report.loadFile('./reports/' + this.state.report);
+                report.load(REPORT_DETAILS.jsonReport ? REPORT_DETAILS.jsonReport : this.sampleReport)
+                console.log(this.state);
+                report.dictionary.variables.getByName("URI").valueObject = this.state.URI;
+                report.dictionary.variables.getByName("PASS").valueObject = this.state.PASS;
+
+                console.log(report.dictionary.variables.getByName("URI").valueObject)
+                
+                // report.dictionary.variables.getByName("URI").requestFromUser = false;
+                // report.dictionary.variables.getByName("PASS").requestFromUser = false;
+
+                // report.dictionary.variables.getByName("API").requestFromUser = false;
+
+                console.log('Assigning report to the viewer, the report will be built automatically after rendering the viewer');
+                viewer.report = report;
+
+                console.log('Rendering the viewer to selected element');
+                viewer.renderHtml('viewer');
+          }
+        }
+        
+        const mapStateToProps = (state) => {
+            return {
+                store: state
+            }
+        }
+
+        const mapDispatchToProps = {
+        }
+        
+        ReactDOM.render(
+            <Viewer />,
+            document.getElementById("main")
+        )        
+    </script>
+</body>
+
+</html>

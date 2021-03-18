@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Report.mrt - Viewer</title>
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="libs/stimulsoft.viewer.office2013.whiteteal.css">
+  <script type="text/javascript" src="libs/stimulsoft.reports.js"></script>
+  <script type="text/javascript" src="libs/stimulsoft.reports.maps.js"></script>
+  <script type="text/javascript" src="libs/stimulsoft.viewer.js"></script>
+  <script type="text/javascript">
+    Stimulsoft.run = function () {
+
+
+      var report = new Stimulsoft.Report.StiReport();
+      report.load({
+        "ReportGuid": "79cc1b5a2436456eaedbf9e08ce9eb08",
+        "ReportName": "Report",
+        "ReportAlias": "Report",
+        "ReportCreated": "/Date(1603174509356+0000)/",
+        "ReportChanged": "/Date(1603174509356+0000)/",
+        "EngineVersion": "EngineV2",
+        "ReportUnit": "Inches",
+        "Script": "using System;\r\nusing System.Drawing;\r\nusing System.Windows.Forms;\r\nusing System.Data;\r\nusing Stimulsoft.Controls;\r\nusing Stimulsoft.Base.Drawing;\r\nusing Stimulsoft.Report;\r\nusing Stimulsoft.Report.Dialogs;\r\nusing Stimulsoft.Report.Components;\r\n\r\nnamespace Reports\r\n{\r\n    public class Report : Stimulsoft.Report.StiReport\r\n    {\r\n        public Report()        {\r\n            this.InitializeComponent();\r\n        }\r\n\r\n        #region StiReport Designer generated code - do not modify\r\n        #endregion StiReport Designer generated code - do not modify\r\n    }\r\n}\r\n",
+        "ReferencedAssemblies": {
+          "0": "System.Dll",
+          "1": "System.Drawing.Dll",
+          "2": "System.Windows.Forms.Dll",
+          "3": "System.Data.Dll",
+          "4": "System.Xml.Dll",
+          "5": "Stimulsoft.Controls.Dll",
+          "6": "Stimulsoft.Base.Dll",
+          "7": "Stimulsoft.Report.Dll"
+        },
+        "Pages": {
+          "0": {
+            "Ident": "StiPage",
+            "Name": "Page1",
+            "Guid": "f3669710361b4fb49e0a52886fcbb572",
+            "Interaction": {
+              "Ident": "StiInteraction"
+            },
+            "Border": ";;2;;;;;solid:Black",
+            "Brush": "solid:",
+            "PaperSize": "Letter",
+            "PageWidth": 8.5,
+            "PageHeight": 11.0,
+            "Watermark": {
+              "TextBrush": "solid:50,0,0,0"
+            },
+            "Margins": {
+              "Left": 0.39,
+              "Right": 0.39,
+              "Top": 0.39,
+              "Bottom": 0.39
+            }
+          }
+        }
+      });
+      var options = new Stimulsoft.Viewer.StiViewerOptions();
+      options.appearance.fullScreenMode = true;
+      options.toolbar.displayMode = Stimulsoft.Viewer.StiToolbarDisplayMode.Separated;
+      var viewer = new Stimulsoft.Viewer.StiViewer(options, "StiViewer", false);
+      viewer.report = report;
+      viewer.renderHtml("content");
+    }
+  </script>
+</head>
+
+<body onload="Stimulsoft.run()">
+  <div id="content"></div>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Hello React</title>
+    <link rel="stylesheet" href="stimulsoft/stimulsoft.designer.office2013.whiteblue.css">
+    <link rel="stylesheet" href="stimulsoft/stimulsoft.viewer.office2013.whiteblue.css">
+    <!-- <link rel="import" href="./../../../src/helpers/apihelper.js"> -->
+</head>
+
+<body>
+    <div id="main"></div>
+
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.25.0/babel.min.js"></script>
+    <script src="stimulsoft/stimulsoft.reports.js"></script>
+    <script src="stimulsoft/stimulsoft.viewer.js"></script>
+    <script src="stimulsoft/stimulsoft.designer.js"></script>
+    <script type="text/babel">
+
+        class Designer extends React.Component {
+            constructor(props){
+                super(props);
+                this.state = {
+                    token : JSON.parse(window.localStorage.getItem("state")).login.userData.token,
+                }
+                this.sampleReport = "{\n  \"ReportGuid\": \"e459f59b768347fd4c581054ab687b9d\",\n  \"ReportName\": \"Report\",\n  \"ReportAlias\": \"Simple List\",\n  \"ReportFile\": \"SimpleList.mrt\",\n  \"ReportAuthor\": \"Stimulsoft\",\n  \"ReportDescription\": \"This sample demonstrates how to create a simple list report.\",\n  \"ReportCreated\": \"/Date(1085817540000+0530)/\",\n  \"ReportChanged\": \"/Date(1613705799000+0530)/\",\n  \"EngineVersion\": \"EngineV2\",\n  \"CalculationMode\": \"Interpretation\",\n  \"ReportUnit\": \"Centimeters\",\n  \"PreviewSettings\": 268435455,\n  \"Styles\": {\n    \"0\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Title1\",\n      \"HorAlignment\": \"Right\",\n      \"VertAlignment\": \"Center\",\n      \"Font\": \";19;;\",\n      \"Border\": \";193,152,89;;;;;;solid:Black\",\n      \"Brush\": \"solid:\",\n      \"TextBrush\": \"solid:193,152,89\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseBorderSides\": false\n    },\n    \"1\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Title2\",\n      \"VertAlignment\": \"Center\",\n      \"Font\": \";9;;\",\n      \"Border\": \";102,77,38;;;;;;solid:Black\",\n      \"Brush\": \"solid:\",\n      \"TextBrush\": \"solid:102,77,38\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseBorderSides\": false\n    },\n    \"2\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Header1\",\n      \"VertAlignment\": \"Center\",\n      \"Font\": \";19;;\",\n      \"Border\": \";193,152,89;;;;;;solid:Black\",\n      \"Brush\": \"solid:\",\n      \"TextBrush\": \"solid:193,152,89\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseBorderSides\": false\n    },\n    \"3\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Header2\",\n      \"HorAlignment\": \"Center\",\n      \"VertAlignment\": \"Center\",\n      \"Font\": \";12;Bold;\",\n      \"Border\": \";193,152,89;;;;;;solid:Black\",\n      \"Brush\": \"solid:\",\n      \"TextBrush\": \"solid:193,152,89\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseBorderSides\": false\n    },\n    \"4\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Header3\",\n      \"HorAlignment\": \"Center\",\n      \"VertAlignment\": \"Center\",\n      \"Font\": \";9;Bold;\",\n      \"Border\": \"All;193,152,89;;;;;;solid:Black\",\n      \"Brush\": \"solid:242,234,221\",\n      \"TextBrush\": \"solid:193,152,89\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseBorderSides\": false\n    },\n    \"5\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Data1\",\n      \"VertAlignment\": \"Center\",\n      \"Font\": \";9;;\",\n      \"Border\": \";193,152,89;;;;;;solid:Black\",\n      \"Brush\": \"solid:\",\n      \"TextBrush\": \"solid:102,77,38\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseBorderSides\": false\n    },\n    \"6\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Data2\",\n      \"Font\": \";9;;\",\n      \"Border\": \";;;;;;;solid:Black\",\n      \"Brush\": \"solid:240,237,232\",\n      \"TextBrush\": \"solid:Black\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseFont\": false,\n      \"AllowUseBorderFormatting\": false,\n      \"AllowUseBorderSides\": false,\n      \"AllowUseTextBrush\": false,\n      \"AllowUseTextOptions\": false\n    },\n    \"7\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Data3\",\n      \"VertAlignment\": \"Center\",\n      \"Font\": \";9;;\",\n      \"Border\": \";193,152,89;;;;;;solid:Black\",\n      \"Brush\": \"solid:240,237,232\",\n      \"TextBrush\": \"solid:102,77,38\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseBorderSides\": false\n    },\n    \"8\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Footer1\",\n      \"VertAlignment\": \"Center\",\n      \"Font\": \";9;;\",\n      \"Border\": \"Top;193,152,89;;;;;;solid:Black\",\n      \"Brush\": \"solid:\",\n      \"TextBrush\": \"solid:102,77,38\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseBorderSides\": false\n    },\n    \"9\": {\n      \"Ident\": \"StiStyle\",\n      \"Name\": \"Footer2\",\n      \"HorAlignment\": \"Right\",\n      \"VertAlignment\": \"Center\",\n      \"Font\": \";12;Bold;\",\n      \"Border\": \";193,152,89;;;;;;solid:Black\",\n      \"Brush\": \"solid:\",\n      \"TextBrush\": \"solid:193,152,89\",\n      \"NegativeTextBrush\": \"solid:Red\",\n      \"AllowUseBorderSides\": false\n    }\n  },\n  \"Pages\": {\n    \"0\": {\n      \"Ident\": \"StiPage\",\n      \"Name\": \"Page1\",\n      \"Guid\": \"366bfdc35bcf48f3aeb38f2b5f58db21\",\n      \"Interaction\": {\n        \"Ident\": \"StiInteraction\"\n      },\n      \"Border\": \"All;;2;;;;;solid:0,0,0\",\n      \"Brush\": \"solid:\",\n      \"PageWidth\": 21,\n      \"PageHeight\": 29.7,\n      \"Watermark\": {\n        \"Font\": \";;Bold;\",\n        \"TextBrush\": \"solid:50,0,0,0\"\n      },\n      \"Margins\": {\n        \"Left\": 1,\n        \"Right\": 1,\n        \"Top\": 1,\n        \"Bottom\": 1\n      }\n    }\n  }\n}";
+            }
+
+
+            render() {
+                return <div id="designer"></div>;
+            }          
+
+            componentDidMount(){
+                console.log('Loading Designer view');
+
+                const REPORT_DETAILS = JSON.parse(window.localStorage.getItem("report-details"))
+
+                console.log('Set full screen mode for the designer');
+                var options = new window.Stimulsoft.Designer.StiDesignerOptions();
+                options.appearance.fullScreenMode = true;
+
+                
+                // Stimulsoft Licence
+                window.Stimulsoft.Base.StiLicense.key = "6vJhGtLLLz2GNviWmUTrhSqnOItdDwjBylQzQcAOiHkkIWHKZyw5v/a/adOMgM+8E5eZG9UZG/owOriMz+Jfc/5vwh" + "14CPdixpFHHPcoEQg1KwKZNDFzXmK6/o5GtQYYX7YK1RbhQGQQpH2qjgDL+EidKAXtbtXq4bkPRX0I++bzs/jBhsUy" + "B9BAi0dPSFmDoXKpmkWA7QSxu8U0vXocfC+z9ng7g3VBR7e9hONIbETizmbdaIUNoAsmt8u6fa4JM712SdRQLuXUqF" + "zUFrp9J2jui892FcDiI78MN0iEHrxej6N/uL/j+QB6Y+HfKO4sQik1njw59fiitHc1RmE85Oqi3O9bIZ1rMS23ye00" + "vAnaBNJY/+cpB3zfPaIYqrwTk7V0UNtBivIgXRSWM5U5EPsBrYpI8XKMZJP0HDssn0ysxAom2gJ3pv9tzW6Em9eDAJ" + "WPkfWwjLfqjLaakIaIoDPbES/nnWLrgb0cFDyA7qc3P7BC8ZyLgFsClVI88HEeFDquLDhQYWWcHZmzrQb36lcQ1ROP" + "J1SECY++QqLbtEdJU2cCu2ghnpIZl0uGCyYw";
+                // Stimulsoft Licence
+
+                
+                console.log('Create the report designer with specified options');
+                var designer = new window.Stimulsoft.Designer.StiDesigner(options, 'StiDesigner', false);
+                
+                designer.onSaveReport = async function (args) {
+                    var jsonReport = args.report.saveToJsonString();
+                    REPORT_DETAILS.json = JSON.stringify(json)
+                    console.log(REPORT_DETAILS);
+                    const BODY = REPORT_DETAILS
+                    // this.state.postRequest('media/saveReportData',BODY).then((data) =>{
+                    //     if(data.status === "success")
+                    //     {
+                    //         console.log("Report Saved")
+                    //     }
+                    // })
+                    const TOKEN = JSON.parse(window.localStorage.getItem("state")).login.userData.token;
+                    const response = await fetch( window.localStorage.getItem("api") + 'media/saveReportData?token=' + TOKEN, {
+                        method: 'POST',
+                        body:  JSON.stringify(BODY), // string or object
+                        headers: {
+                        'Content-Type': 'application/json'
+                        }
+                    });
+                    const myJson = await response.json(); //extract JSON from the http response
+                    // do something with myJson
+                    console.log(myJson,"MYJson")
+                }
+
+                console.log('Create a new report instance');
+                var report = new window.Stimulsoft.Report.StiReport();
+                // var reportString = report.saveToJsonString();
+                // console.log(reportString);
+                
+                console.log('Load report from url');
+                // report.loadFile('reports/SimpleList.mrt');
+                report.load(REPORT_DETAILS.json ? JSON.parse(REPORT_DETAILS.json) : this.sampleReport)
+
+                console.log('Edit report template in the designer');
+                designer.report = report;  
+                
+                designer.renderHtml("designer");
+          }
+        }
+        ReactDOM.render(
+            <Designer />,
+            document.getElementById("main")
+        )        
+    </script>
+</body>
+
+</html>
